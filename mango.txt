@@ -6,6 +6,19 @@ Donate
 Create account
 Log in
 
+A thread is an execution stream bound to a process. While the process provides the overarching environment, the thread extracts only the essential "thread of control" information.
+• Private Resources (Thread-Specific): Each thread maintains its own Program Counter (PC), Register Set, and Stack. The stack is critical as it stores local variables and return addresses for that specific execution path.
+• Shared Resources (Process-Wide): All threads within a single process share the Code (Text), Global Data, Heap, and Open Files.
+Comparative Evaluation: Forking and Joining
+The source context defines the creation of a thread as Forking and its termination or synchronization as Joining. Threads are significantly lighter than processes because they share an address space. This architecture eliminates the need for complex, high-overhead system calls for communication. Instead of message passing or shared-memory segments, threads communicate by simply passing pointers within their shared heap—an incredibly efficient but inherently dangerous mechanism.
+This shared environment provides the speed modern systems require, but it also introduces the risk of threads colliding within the same memory, leading to the "Concurrency Paradox."
+3. The Concurrency Paradox: Non-Determinism and Race Conditions
+The primary trade-off of multi-threading is the sacrifice of determinism. In traditional programming, given the same input, a program follows a predictable path. In a multithreaded environment, execution is non-deterministic because the OS scheduler—not the programmer—controls the interleaving of threads.
+Analyzing Non-Determinism
+Even on a single CPU, timer interrupts can trigger a context switch at any moment. This leads to "indeterminate behavior," where the same code can produce different results across different runs.
+Deconstructing the Race Condition
+
+
 File
 Old desktop computer
 Since 2001, Wikipedia has become the backbone of knowledge on the internet. Discover 25 years of Wikipedia
